@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -49,6 +51,45 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+
+        $debug = config('app.debug'); 
+        $message = '';
+        $statusCode = "";
+
+        if($debug) {
+
+            return parent::render($request, $exception);
+
+        }
+
+        if($exception instanceof NotFoundHttpException) {
+
+            $message = "end point yang tujuan kamu tidak tersedia";
+            $statusCode = 404;
+
+        }else if($exception instanceof MethodNotAllowedException) {
+
+            $message = "Aksi ini tidak di izinkan";
+            $statusCode = 405;
+
+        }else if($exception instanceof ValidationException) {
+
+            $errors = $exception->validator()->errors()->getMessage();
+            $message = array_map(function($error){
+                return array_map(function($message) {
+                    return $message;
+                }, $error); 
+            }, $errors);
+            $statusCode = 405;
+        }else{
+            $message = "Terjadi Kesalahan pada sistem kami, silah coba lagi nanti";
+        }
+
+        return response()
+            ->json([
+                'status' => 'error',
+                'message' => $message,
+            ], $statusCode);
+
     }
 }
