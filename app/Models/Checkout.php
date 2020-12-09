@@ -9,7 +9,7 @@ class Checkout extends Model
 {
 
   use HasFactory;
-  
+
   /**
    * many to many with product
    * 
@@ -45,7 +45,7 @@ class Checkout extends Model
    * 
    * @return Eloquent
    */
-  public function invoince()
+  public function invoice()
   {
 
     return $this->hasOne(Invoice::class);
