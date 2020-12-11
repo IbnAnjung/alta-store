@@ -25,6 +25,8 @@ class GuestController extends Controller
     $guest->token = md5(\random_bytes(10));
     $guest->save();
 
+    $guest->cart()->create();
+
     return response()->json([
       'guest_token' => $guest->token,
       'description' => 'gunakan token ini pada headers(x-guest-token) untuk setiap request'
