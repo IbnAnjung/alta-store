@@ -16,7 +16,7 @@ class GuestMiddleware
      */
     public function handle($request, Closure $next)
     {
-      if((new GuestController)->isValidGuestToken($request)) {
+      if((new GuestController)->getGuest($request)) {
         
         return $next($request);
 
