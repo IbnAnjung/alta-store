@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
 
         $debug = config('app.debug'); 
         $message = '';
-        $statusCode = "";
+        $statusCode = 500;
 
         if($debug) {
 
@@ -72,6 +72,9 @@ class Handler extends ExceptionHandler
             $message = "Aksi ini tidak di izinkan";
             $statusCode = 405;
 
+        }else if($exception instanceof ModelNotFoundException){
+            $message = "Data yang kamu cari tidak ketemu";
+            $statusCode = 404;
         }else if($exception instanceof ValidationException) {
 
             $errors = $exception->validator()->errors()->getMessage();
@@ -83,6 +86,7 @@ class Handler extends ExceptionHandler
             $statusCode = 405;
         }else{
             $message = "Terjadi Kesalahan pada sistem kami, silah coba lagi nanti";
+            $statusCode = 500;
         }
 
         return response()
