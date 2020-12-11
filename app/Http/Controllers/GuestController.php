@@ -32,12 +32,12 @@ class GuestController extends Controller
 
   }
 
-  public function isValidGuestToken(Request $request)
+  public function getGuest(Request $request)
   {
 
     $guest = Guest::whereToken($request->header('x-guest-token'))->first();
 
-    return ($guest) ? true : false;
+    return $guest ;
 
   }
 }
