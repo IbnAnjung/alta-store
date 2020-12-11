@@ -16,8 +16,19 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 */
-
+/**
+ * Route Group Category
+ */
 $router->group(['prefix' => 'category', 'middleware' => 'guest'], function() use($router){
-    $router->get('/', ['as' => '', 'uses' => 'CategoryController@getAll']);
+    $router->get('/', ['as' => '', 'uses' => 'CategoryController@getAllCategory']);
     $router->get('{idCategory}/products', ['as' => '.products', 'uses'=> 'CategoryController@getCategoryProducts']);
 });
+
+/**
+ * Route Group Product
+ */
+$router->group(['prefix'=>'product', 'middleware'=>'guest'], function() use($router){
+    $router->get('/', ['as'=>'', 'uses'=> 'ProductController@getAllProducts']);
+    $router->get('{idProduct}', ['as'=>'', 'uses'=> 'ProductController@getProduct']);
+});
+
