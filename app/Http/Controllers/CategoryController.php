@@ -24,12 +24,12 @@ class CategoryController extends Controller
      * 
      * @return Response
      */
-    public function getAll(Request $request)
+    public function getAllCategory(Request $request)
     {
 
       $this->validate($request, [
-        'page' => 'int',
-        'limit' => 'int',
+        'page' => 'int|min:1',
+        'limit' => 'int|min:1'
       ]);
       
       $limit = $request->get('limit');
