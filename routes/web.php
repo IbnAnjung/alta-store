@@ -32,3 +32,14 @@ $router->group(['prefix'=>'product', 'middleware'=>'guest'], function() use($rou
     $router->get('{idProduct}', ['as'=>'', 'uses'=> 'ProductController@getProduct']);
 });
 
+/**
+ * Route Group Cart
+ */
+$router->group(['prefix' => 'cart', 'middleware'=> 'guest'], function() use($router){
+    $router->get('/', ['as' => 'cart', 'uses' => 'CartController@getCartProducts']);
+    $router->post('store', ['as' => 'store', 'uses' => 'CartController@storeProductToCart']);
+    $router->patch('update/{productId}', ['as' => 'update-product', 'uses' => 'CartController@updateProductCart']);
+    $router->delete('delete/{productId}', ['as'=>'delete-product', 'uses' => 'CartController@deleteProductFromCart']);
+});
+
+
