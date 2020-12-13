@@ -70,7 +70,7 @@ class InvoiceController extends Controller
     $invoice = Invoice::findOrFail($invoiceId);
     $guest = (new GuestController)->getGuest($request);
 
-    if($invoice->checkout->guest->id !== $guest->id){
+    if($invoice->checkout->guest->id !== $guest->id && $request->header('x-admin-token') == ''){
       return response()->json([
         'status' => 'error',
         'message' => 'maaf invoice yang kamu cari tidak ketemu'
