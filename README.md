@@ -13,7 +13,7 @@ Dibangun dengan lumen, sebuah micro framework dari laravel. ini dapat membantu k
 - middleware Tamu & Admin
 
 ### ERD
-![ERD](https://drive.google.com/file/d/18GFUkueW5as319pYvG3_ddqrgQ5D5X2-/view)
+![ERD](https://github.com/IbnAnjung/altastore/blob/main/ERD%20ALTA%20STORE.png?raw=true)
 
 ## BAGAIMANA CARA MENGGUNAKANNYA ?
 
