@@ -13,7 +13,7 @@ Dibangun dengan lumen, sebuah micro framework dari laravel. ini dapat membantu k
 - middleware Tamu & Admin
 
 ### ERD
-![ERD](https://lh5.googleusercontent.com/mgPtFQ15xUeXMVS6N0Ko-VePgM1YGIb9y4RRPFvOnsdz_ayYpgFk4ogtvLOY1JqL1eVa0QRvmMDjErye9Z_u=w1366-h568-rw)
+![ERD](https://drive.google.com/file/d/18GFUkueW5as319pYvG3_ddqrgQ5D5X2-/view)
 
 ## BAGAIMANA CARA MENGGUNAKANNYA ?
 
@@ -78,7 +78,7 @@ Dibangun dengan lumen, sebuah micro framework dari laravel. ini dapat membantu k
   - {payment_method} - string, eg: transfer
   - {payment_date} - *required*, d-m-Y
   - {payment_total} - *required*, int
-  - {to_account} - *required*, string, eg: BCA, a/n ...
+  - {to_account} - *required*, string, eg: BCA, a/n a,b,c
 -[POST]/payment/approving/{invoiceId}
   - merubah status invoice jadi lunas
   - {invoiceId} - *required*
